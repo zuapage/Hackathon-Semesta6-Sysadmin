@@ -4,7 +4,8 @@ Repositori berikut merupakan solusi saya dalam memecahkan masalah yang telah dib
 # Automation and Secure Deployment
 Lab ini dibangun menggunakan virtualisasi VirtualBox, dengan dua VM yang berperan sebagai server development dan server production. Beberapa alat digunakan untuk menunjang proses pemecahan masalah dalam kasus ini.
 
-![semesta-hackaton](https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/99cadd82-46ef-498a-b18e-3da0d0ddd6e6)
+![semesta-hackaton](https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/9dc99ba8-b59f-4531-b461-4c051420ccf8)
+
 
 ## -- Setup & Installation --
 1. Menjalankan Script Preparation
@@ -45,21 +46,23 @@ Lab ini dibangun menggunakan virtualisasi VirtualBox, dengan dua VM yang berpera
 
 Berikut adalah tampilan trigger build dengan webhook pada pipeline job:
 
-<img width="800" alt="Screenshot 2024-06-30 023807" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/6a46eb67-4723-421e-ade5-c74a204cef35">
+<img width="800" alt="webhook" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/8f79392b-3958-46ee-9df4-89cecbef5a42">
+
 
 Berikut adalah tampilan ketika pipeline job berhasil dijalankan:
 
-<img width="800" alt="Screenshot 2024-06-29 223341" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/63865525-0e5c-4349-8b38-367b0fc2b177">
+<img width="800" alt="Screenshot 2024-06-29 223341" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/3204d100-308b-4a75-a4af-b92add3475a8">
+
 
 Berikut adalah tampilan dari aplikasi yang telah berhasil di deploy dari hasil pipeline job ke server 'prod-semesta':
 
-<img width="900" alt="Screenshot 2024-06-29 223440" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/2bf4b5b3-5bc1-4efa-b004-d87bedc8e897">
+<img width="800" alt="Screenshot 2024-06-29 223440" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/d21b44d1-5325-49bf-9e22-0c7de07cdd90">
 
 
 ## -- Monitoring --
 Setelah aplikasi di-deploy ke server production, monitoring dilakukan untuk memantau kinerja aplikasi. Berikut adalah contoh tampilan monitoring menggunakan Grafana:
 
-<img width="959" alt="DASHBOARDD" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/22e6df67-8951-4512-8ec6-c30d7cc4cafd">
+<img width="959" alt="DASHBOARDD" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/e673c9f6-7f85-42d7-b5dd-c5d30d13fe0a">
 
 
 ## -- User Workflow --
@@ -67,13 +70,14 @@ Setelah aplikasi di-deploy ke server production, monitoring dilakukan untuk mema
 - Permintaan akan diteruskan melalui reverse proxy ke port 3000 tempat `semesta-app1` berjalan.
 - Berikut adalah respon yang diterima user ketika permintaan berhasil diproses:
 
-<img width="959" alt="semesta-app1" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/585194eb-313e-4a15-93ab-3b8ead070727">
+<img width="959" alt="semesta-app1" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/c967a818-e905-408f-bd70-2a17dbf571b7">
 
 
 - Jika user mengakses domain `semesta.mafumaku.biz.id` dengan endpoint `/aboutus`:
   - Permintaan akan diteruskan melalui reverse proxy ke port 3001 tempat `semesta-app2` berjalan.
   - Berikut adalah respon yang diterima user ketika permintaan berhasil diproses:
 
-<img width="959" alt="semesta-app2" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/7f844d68-1fa2-48fc-917d-6144a20ece81">
+<img width="959" alt="semesta-app2" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/bb96a0ce-23e6-4f6d-ab6b-77f7eda9fbb4">
+
 
 
