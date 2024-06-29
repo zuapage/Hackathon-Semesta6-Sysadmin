@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  jenkins_server:
+    container_name: jenkins_server
+    image: jenkins/jenkins:lts
+    user: root
+    privileged: true
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    volumes:
+      - jenkins-home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /usr/bin/docker:/usr/bin/docker
+    networks:
+      dev_semesta:
+        ipv4_address: 192.168.1.3
+
+networks:
+  dev_semesta:
+    external: true
+volumes:
+  jenkins-home: {}

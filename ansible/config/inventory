@@ -1,0 +1,17 @@
+[dev_semesta]
+192.168.56.120:1566
+
+[prod_semesta]
+192.168.56.121:1566
+
+[dev_semesta:vars]
+ansible_user=bunnies
+ansible_become=yes
+ansible_become_method=sudo 
+ansible_become_pass='{{ semesta_sudo_pass }}'
+
+[prod_semesta:vars]
+ansible_user=bunnies
+ansible_become=yes
+ansible_become_method=sudo
+ansible_become_pass='{{ semesta_sudo_pass }}'

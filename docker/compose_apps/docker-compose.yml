@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  semesta-app1:
+    container_name: semesta-app1
+    image: poetryndream/semesta-app1:1
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      prometheus_prod_semesta:
+        ipv4_address: 10.0.0.3
+  semesta-app2:
+    container_name: semesta-app2
+    image: poetryndream/semesta-app2:2
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3001"
+    networks:
+      prometheus_prod_semesta:
+        ipv4_address: 10.0.0.4
+    depends_on:
+      - semesta-app1
+
+networks:
+  prometheus_prod_semesta:
+    external: true

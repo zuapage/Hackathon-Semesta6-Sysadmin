@@ -1,0 +1,10 @@
+---
+- name: Use dev_semesta role playbook for setup development
+  hosts: dev_semesta
+  roles:
+    - dev_semesta
+
+- name: Use prod_semesta role playbook for setup production
+  hosts: prod_semesta
+  roles:
+    - prod_semesta

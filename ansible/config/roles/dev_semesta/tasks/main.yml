@@ -1,0 +1,38 @@
+---
+# tasks file for dev_semesta
+- name: Create directory for docker-compose jenkins & grafana
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - /usr/src/compose/jenkins
+    - /usr/src/compose/grafana
+
+- name: Copy docker-compose.yml script for jenkins
+  copy:
+    src: jenkins_compose.yml
+    dest: /usr/src/compose/jenkins/docker-compose.yml
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy docker-compose.yml script for jenkins
+  copy:
+    src: grafana_compose.yml
+    dest: /usr/src/compose/grafana/docker-compose.yml
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Running container jenkins using docker compose
+  shell: 
+    cmd: docker compose up -d
+    chdir: /usr/src/compose/jenkins
+
+- name: Running container grafana using docker compose
+  shell:
+    cmd: docker compose up -d
+    chdir: /usr/src/compose/grafana

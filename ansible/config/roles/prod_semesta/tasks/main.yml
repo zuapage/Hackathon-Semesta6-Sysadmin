@@ -1,0 +1,89 @@
+---
+# tasks file for prod_semesta
+
+- name: Create Docker key directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Import Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+  notify:
+    - update package list
+
+- name: Install Docker Engine, and additional components
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+  notify:
+    - start and enable docker
+
+- name: Install Web Server (Nginx)
+  apt:
+    name: nginx
+    state: present
+  notify:
+     - start and enable nginx
+
+- name: Import Telegraf GPG key
+  apt_key:
+    url: https://repos.influxdata.com/influxdata-archive_compat.key
+    keyring: /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg
+    state: present
+
+- name: Add Telegraf repository
+  apt_repository:
+    repo: deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main
+    state: present
+  notify:
+    - update package list
+
+- name: Install Telegraf packages
+  apt:
+    name:
+      - telegraf
+    state: present
+
+- name: Create directory for docker-compose Prometheus
+  file:
+    path: /usr/src/compose/prometheus/config
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy docker-compose.yml script for Prometheus
+  copy:
+    src: prometheus_compose.yml
+    dest: /usr/src/compose/prometheus/docker-compose.yml
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy Prometheus configuration file
+  copy:
+    src: prometheus.yml
+    dest: /usr/src/compose/prometheus/config
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Running container Prometheus using docker compose
+  shell:
+    cmd: docker compose up -d
+    chdir: /usr/src/compose/prometheus

@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+     - "3100:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    networks:
+      dev_semesta:
+        ipv4_address: 192.168.1.4
+
+volumes:
+  grafana-storage: {}
+
+networks:
+  dev_semesta:
+    external: true

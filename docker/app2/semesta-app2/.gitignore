@@ -1,0 +1,4 @@
+*.so
+*.test
+vendor/
+go.work
