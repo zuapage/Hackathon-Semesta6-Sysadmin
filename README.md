@@ -80,4 +80,8 @@ Setelah aplikasi di-deploy ke server production, monitoring dilakukan untuk mema
 <img width="959" alt="semesta-app2" src="https://github.com/zuapage/Hackathon-Semesta6-Sysadmin/assets/68767230/bb96a0ce-23e6-4f6d-ab6b-77f7eda9fbb4">
 
 
+# Infrastructure Provisioning
+Hasil dari pengerjaan dapat di akses pada direktori 'cisco packet tracer'.
 
+
+Thank you ^_^
